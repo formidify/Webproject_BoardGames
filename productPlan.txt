@@ -1,0 +1,28 @@
+Vermilion Villarreal
+James Yang
+Project Plan
+
+The data that we plan to use is a list of boardgames that includes number of players,
+publisher, year published, a description of the game, possible expansions, average game
+length, and mechanics in the game. We found this data set is included in the R package,
+bgg Analysis. https://github.com/9thcirclegames/bgg-analysis . On the license file it says
+"Permission is herby granted, free of charge, to any person obtaining a copy of this 
+software and associated documentation file...".
+
+The intended audience for this dataset is users who want to learn about new boardgames, as
+well as people who want to learn about existing boardgames. Users can also search through
+particular genres and attributes if they have a preference or they are looking for recommendations that follow the same idea as their search.
+
+Key functional requirements:
+1. The system must take user input and display appropriate results.
+    i. The system shall present the results an organized hierarchical way.
+    ii. The system shall provide additional recommendations for each correct search.
+2. If there are no results that match the user input, the system must return links to other database (Google etc.)
+3. The system must provide a list of "popular" games on the home page.
+    i. The system shall have a view of boardgames on the homepage.
+4. The system must update the data base from time to time.
+
+Prioritized features:
+Searching framework
+Recommendation system
+Organized results view
