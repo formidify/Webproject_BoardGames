@@ -10,8 +10,8 @@ import psycopg2
 import getpass
 
 # Get the database login info
-database = 'adalal'
-user = 'adalal'
+database = 'boardgames'
+user = 'yangj2'
 password = getpass.getpass()
 
 # Login to the database
