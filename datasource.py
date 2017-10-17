@@ -67,8 +67,10 @@ class DataSource:
 	#helper functions which take a list and an input and return a list that only contains the given input
 	def findGenres(self, list, genreInput):
 		#return a list if found, or else return -1
-	def findGames(self, list, searchInput):
+		return;
 
+	def findGames(self, list, searchInput):
+		return;
 
 	def listAZSearch(self):
 		try:
