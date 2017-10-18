@@ -157,12 +157,13 @@ class DataSource:
 	'''
 	def returnAllAttributes(self, gameName):
 		try:
+			resultList = []
 			self.cursor.execute('SELECT * FROM boardgames WHERE gameName=%s', (gameName,))
-			resultList=self.cursor.fetchall()
-			if len(resultList) > 1:
+			resultList.append(self.cursor.fetchall())
+			if len(resultList[0][0]) > 1:
 				return -1
-			if resultList[9] == 0:
-				resultList[9] = "NA"
+			if resultList[0][0][9] == 0:
+				resultList[0][0][9] = "NA"
 			return resultList
 		except Exception as e:
 			print('Curcor error', e)
@@ -200,9 +201,27 @@ def main():
 	list6 = newQuery.newGamesSearch()
 	for i in range(20):
 		print(list6[i][1] + " ")
+	print(len(list6))
+	print(len(list6[0]))
+	print()
+	print()
+
+	#Test randomSearch
+	list7 = newQuery.randomSearch()
+	print(len(list7))
+	print(len(list7[0]))
+	for i in range(7):
+		print(list7[i][0][1] + " ")
 
 	print()
 	print()
+
+	#Test returnAllAttributes
+	for i in range(7):
+		for j in range(16):
+			if newQuery.returnAllAttributes(list7[i][0][1]) != -1:
+				print((newQuery.returnAllAttributes(list7[i][0][1]))[0][0][j] + " ")
+		print()
 
 main()
 
