@@ -87,11 +87,22 @@ class DataSource:
 	'''
 	def findGames(self, list, searchInput):
 		j = 0
-		resultList = []
+		bothEnd = []
+		frontEnd = []
+		backEnd = []
+		neitherEnd = []
 		for i in range(len(list)):
-			if searchInput in list[i][7]:
-				resultList.append(list[i])
+			if (" " + searchInput + " ") in list[i][7]:
+				bothEnd.append(list[i])
 				j = j + 1
+			elif (" " + searchInput) in list[i][7]:
+				frontEnd.append(list[i])
+			elif (searchInput + " ") in list[i][7]:
+				backEnd.append(list[i])
+			elif searchInput in list[i][7]:
+				neitherEnd.append(list[i])
+			j = j + 1
+		resultList = bothEnd + frontEnd + backEnd + neitherEnd
 		if resultList:
 			return resultList
 		return -1
@@ -102,8 +113,8 @@ class DataSource:
 	'''
 	def listAZSearch(self):
 		try:
-			self.cursor.execute('SELECT gameDescription, gameName, thumbnailURL \
-			FROM boardgames ORDER BY gameName DESC')
+			self.cursor.execute('SELECT gameDescription, gameName, thumbnailURL, gameID \
+			FROM boardgames ORDER BY gameName ASC')
 			if self.cursor:
 				resultList = self.cursor.fetchall()
 				return resultList
@@ -120,7 +131,7 @@ class DataSource:
 	'''
 	def newGamesSearch(self):
 		try:
-			self.cursor.execute('SELECT gameDescription, gameName, thumbnailURL FROM boardgames \
+			self.cursor.execute('SELECT gameDescription, gameName, thumbnailURL, gameID FROM boardgames \
 			where yearPublished>2000 ORDER BY yearPublished DESC')
 			if self.cursor:
 				resultList = self.cursor.fetchall()
@@ -141,10 +152,9 @@ class DataSource:
 		try:
 			for i in range(7):
 				r = random.randint(1, 90400)
-				self.cursor.execute('SELECT gameDescription, gameName, thumbnailURL FROM boardgames \
-				LIMIT 1 OFFSET %s', (r-1,))
-				entry = self.cursor.fetchall()
-				resultList.append(entry)
+				self.cursor.execute('SELECT gameDescription, gameName, thumbnailURL, gameID FROM boardgames \
+				where gameID =%s', (r,))
+				resultList.append((self.cursor.fetchall())[0])
 			return resultList
 		except Exception as e:
 			print('Curcor error', e)
@@ -155,16 +165,11 @@ class DataSource:
 	Returns a tuple of attributes given the game name.
 	Used to provide all attributes of a game given its name as the input
 	'''
-	def returnAllAttributes(self, gameName):
+	def returnAllAttributes(self, gameID):
 		try:
-			resultList = []
-			self.cursor.execute('SELECT * FROM boardgames WHERE gameName=%s', (gameName,))
-			resultList.append(self.cursor.fetchall())
-			if len(resultList[0][0]) > 1:
-				return -1
-			if resultList[0][0][9] == 0:
-				resultList[0][0][9] = "NA"
-			return resultList
+			self.cursor.execute('SELECT * FROM boardgames WHERE gameID=%s', (gameID,))
+			resultList = self.cursor.fetchall()
+			return resultList[0]
 		except Exception as e:
 			print('Curcor error', e)
 			self.connection.close()
@@ -174,53 +179,75 @@ class DataSource:
 #Tester 
 def main():
 	newQuery = DataSource()
+	print("Results for new games search. \n")
+
 	#Test mainSearch()
-	list1 = newQuery.mainSearch(-1, -1, "love")
-	list2 = newQuery.mainSearch(-1, -1, "hate")
+	list1 = newQuery.mainSearch(-1, -1, "war")
+	list2 = newQuery.mainSearch(-1, 4, "war")
 	list3 = newQuery.mainSearch(-1, 0, "")
 	list4 = newQuery.mainSearch("good", 3, "hfjrwhvijefhvweehgggggivivfbi")
+
+	print()
+	print("Results for main search list1: \n")
 	for i in range(3):
 		print(list1[i][7] + " ")
-		print(list2[i][7] + " ")
-		print(list3[i][7] + " ")
+
+
 	print()
+	print("Results for main search list2: \n")
+	for i in range(3):
+		print(list2[i][7] + " ")
+
+	print()
+	print("Results for main search list3: \n")
+	for i in range(3):
+		print(list3[i][7] + " ")
+
+	print()
+	print("Results for main search list4: \n")
 	print(list4) #should return -1
 
 	print()
 	print()
 
 	#Test listAZSearch
+	print("Results for games A-Z search. \n")
 	list5 = newQuery.listAZSearch()
 	for i in range(20):
-		print(list5[i][1] + " ")
+		print(list5[i][1])
+		print()
 
 	print()
 	print()
 
 	#Test newGamesSearch
+	print("Results for new games search. \n")
 	list6 = newQuery.newGamesSearch()
 	for i in range(20):
-		print(list6[i][1] + " ")
-	print(len(list6))
-	print(len(list6[0]))
+		print(list6[i][1])
+		print()
+
 	print()
 	print()
 
 	#Test randomSearch
+	print("Results for random games search. \n")
 	list7 = newQuery.randomSearch()
-	print(len(list7))
-	print(len(list7[0]))
 	for i in range(7):
-		print(list7[i][0][1] + " ")
+		print(list7[i][1])
+		print()
 
 	print()
 	print()
 
 	#Test returnAllAttributes
+	print("Results for a particular game. \n")
 	for i in range(7):
-		for j in range(16):
-			if newQuery.returnAllAttributes(list7[i][0][1]) != -1:
-				print((newQuery.returnAllAttributes(list7[i][0][1]))[0][0][j] + " ")
+		gameAttr = newQuery.returnAllAttributes(list7[i][3])
+		print("Attributes for game", (i + 1))
+		for j in range(17):
+			print(gameAttr[j])
+			print()
 		print()
 
 main()

@@ -16,5 +16,6 @@ CREATE TABLE boardgames (
   gameExpansion text,
   gameFamily text,
   gameMechanic text,
-  gamePublisher text
+  gamePublisher text,
+  gameID int
 );

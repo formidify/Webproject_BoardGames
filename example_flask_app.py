@@ -7,17 +7,21 @@
     A slightly more complicated Flask sample app than the
     "hello world" app found at http://flask.pocoo.org/.
 '''
+import datasource.py
 import flask
 from flask import render_template
 import json
 import sys
 
 app = flask.Flask(__name__)
+newQuery = DataSource()
 
 @app.route('/')
-def hello():
-    return 'Hello, Citizen of CS257.'
-
+def homePage():
+    randomList = newQuery.randomSearch()
+    #check if URL is valid
+    return render_template('boardGamesWebsite.html', list = randomList)
+    
 @app.route('/fancier/')
 def itDoesHTML():
     htmlStr = '<html lang="en">' + \
@@ -74,3 +78,13 @@ if __name__ == '__main__':
     host = sys.argv[1]
     port = sys.argv[2]
     app.run(host=host, port=port)
+
+ 
+#<!DOCTYPE html>
+#<html>
+#<body>
+
+#<img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="W3Schools.com" style="width:104px;height:142px;">
+
+#</body>
+#</html>
