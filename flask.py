@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 '''
-    James Yang, Vermillion Villarreal
-    Last updated: October 23rd 
+    example_flask_app.py
+    Jeff Ondich, 22 April 2016
+    Modified by Eric Alexander, January 2017
+
+    A slightly more complicated Flask sample app than the
+    "hello world" app found at http://flask.pocoo.org/.
 '''
 import datasource.py
 import flask
@@ -9,10 +13,6 @@ from flask import render_template request
 import json
 import sys
 
-'''
-Another thing to add is the footer of seach pages so users can chose which result page to go next;
-create another function and return a list (parse "..." as 0). 
-'''
 app = flask.Flask(__name__)
 newQuery = DataSource()
 A_ZList = newQuery.listAZSearch()
@@ -77,3 +77,13 @@ if __name__ == '__main__':
     host = sys.argv[1]
     port = sys.argv[2]
     app.run(host=host, port=port)
+
+ 
+#<!DOCTYPE html>
+#<html>
+#<body>
+
+#<img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="W3Schools.com" style="width:104px;height:142px;">
+
+#</body>
+#</html>
