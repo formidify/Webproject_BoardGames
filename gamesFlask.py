@@ -5,7 +5,7 @@
 '''
 import datasource.py
 import flask
-from flask import render_template request
+from flask import render_template, request
 import json
 import sys
 
@@ -57,13 +57,14 @@ def searchPage_form():
 @app.route('/<genre>+<minPlayers>+<input>/<number>')
 def searchPage_create(genre, minPlayers, searchInput, number):
     resultList = newQuery.mainSearch(genre, minPlayers, searchInput);
-    if resultList:
+    if resultList != -1:
         if (10*(number -1) > len(resultList)) || (number <= 0):
             return render_template('404.html'), 404
         else:
-            returnList = A_ZList[(i-1)*10+1, i*10+1]
+            returnList = resultList[(i-1)*10+1, i*10+1]
             return render_template('HTML of search page.', list = returnList, total = len(resultList))
     return render_template('HTML of no result page')
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
