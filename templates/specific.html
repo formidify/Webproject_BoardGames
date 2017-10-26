@@ -14,10 +14,10 @@ Although you can use them, for a more unique website, replace these images with 
     <title>Game Page</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
-    <link href="static/css/custom.css" rel="stylesheet">
+    <link href="../static/css/custom.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,32 +32,18 @@ Although you can use them, for a more unique website, replace these images with 
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav id="siteNav" class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Logo and responsive toggle -->
             <div class="navbar-header">
-                <form action="http://perlman.mathcs.carleton.edu:5131/<genre>+<minPlayers>+<search>/" method="POST">
-                    <select id="minPlayers" name="minPlayers">
-                        <option value="">Min Players</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">>5</option>
-                    </select>
-                    <input type="text" id="genre" name="genreInput" placeholder="Search a genre...">
-                    <input type="text" id="search" name="searchInput" placeholder="Search by name...">
-                    <input type="submit" value="Search">
-                </form>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="http://perlman.mathcs.carleton.edu:5131/">
                     <span class="glyphicon glyphicon-king"></span> 
                     BOARD GAMES
                 </a>
@@ -69,7 +55,7 @@ Although you can use them, for a more unique website, replace these images with 
                         <a href="http://perlman.mathcs.carleton.edu:5131/">Home</a>
                     </li>
                     <li>
-                        <a href="http://perlman.mathcs.carleton.edu:5131/newgames/">What's New</a>
+                        <a href="http://perlman.mathcs.carleton.edu:5131/newgames/">New Games</a>
                     </li>
                     <li>
                         <a href="http://perlman.mathcs.carleton.edu:5131/a_z/">List A-Z</a>
@@ -84,7 +70,20 @@ Although you can use them, for a more unique website, replace these images with 
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <p></p>
+                <br><br><br>
+                <form action="http://perlman.mathcs.carleton.edu:5131/search/" method="POST" style="color:#000000">
+                    <select id="minPlayers" name="minPlayers" type="number">
+                        <option value=-1>Min Players</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>>5</option>
+                    </select>
+                    <input type="text" id="genre" name="genre" placeholder="Search a genre...">
+                    <input type="text" id="search" name="search" placeholder="Search by name...">
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </form>
             </div>
         </div>
     </header>
@@ -94,44 +93,41 @@ Although you can use them, for a more unique website, replace these images with 
         <!-- Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">{{list.name}}:
-                </h1>
-                <img src={{list.URL}} alt="Not Found">
+                <h1 class="page-header">{{list.name}}:</h1>
+                <img src={{list.URL}} alt="Not Found" width="40%" height="40%">
             </div>
         </div>
         <div class="row">
             <p>
-                Description: {{list.desc}}
-                <br>
-                Max Players: {{list.maxPlayer}}
-                <br>
-                Min Players: {{list.minPlayer}}
-                <br>
-                Max Playing Time: {{list.maxTime}}
-                <br>
-                Min Playing Time: {{list.minTime}}
-                <br>
-                Min Age: {{list.minAge}}
-                <br>
-                Year Published: {{list.year}}
-                <br>
-                Publisher: {{list.publisher}}
-                <br>
-                Designer(s): {{list.desginer}}
+                <br><hr>
+                <b>Description:</b> {{list.desc}}
+                <br><hr>
+                <b>Max Players:</b> {{list.maxPlayer}}
+                <br><hr>
+                <b>Min Players:</b> {{list.minPlayer}}
+                <br><hr>
+                <b>Max Playing Time:</b> {{list.maxTime}}
+                <br><hr>
+                <b>Min Playing Time:</b> {{list.minTime}}
+                <br><hr>
+                <b>Min Age:</b> {{list.minAge}}
+                <br><hr>
+                <b>Year Published:</b> {{list.year}}
+                <br><hr>
+                <b>Publisher:</b> {{list.publisher}}
+                <br><hr>
+                <b>Designer(s):</b> {{list.desginer}}
+            </p>
         </div>
 
     </div>
-    
-    <footer>
-        
+    <footer>  
         <div class="small-print">
             <div class="container">
                 <hr>
-                <p>This data set is included within the R package bggAnalysis. Permissions to use is granted, free of charge, to any person obtaining a copy of this software and associated documentation file. </p>
+                <p>This data set is included within the R package bggAnalysis. Permissions to use is granted, free of charge, to any person obtaining a copy of this software and associated documentation file. All images present on this page are from cf.geekdo-images.com.</p>
             </div>
         </div>
-    </footer>
-    
+    </footer>   
 </body>
-
 </html>

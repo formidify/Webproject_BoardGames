@@ -11,13 +11,13 @@ Although you can use them, for a more unique website, replace these images with 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Resuits</title>
+    <title>Game Results</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
-    <link href="static/css/custom.css" rel="stylesheet">
+    <link href="../static/css/custom.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,32 +32,18 @@ Although you can use them, for a more unique website, replace these images with 
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav id="siteNav" class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Logo and responsive toggle -->
             <div class="navbar-header">
-                <form action="http://perlman.mathcs.carleton.edu:5131/<genre>+<minPlayers>+<search>/" method="POST">
-                    <select id="minPlayers" name="minPlayers">
-                        <option value="">Min Players</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">>5</option>
-                    </select>
-                    <input type="text" id="genre" name="genre" placeholder="Search a genre...">
-                    <input type="text" id="search" name="search" placeholder="Search by name...">
-                    <input type="submit" value="Search">
-                </form>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="http://perlman.mathcs.carleton.edu:5131/">
                     <span class="glyphicon glyphicon-king"></span> 
                     BOARD GAMES
                 </a>
@@ -69,7 +55,7 @@ Although you can use them, for a more unique website, replace these images with 
                         <a href="http://perlman.mathcs.carleton.edu:5131/">Home</a>
                     </li>
                     <li>
-                        <a href="http://perlman.mathcs.carleton.edu:5131/newgames/">What's New</a>
+                        <a href="http://perlman.mathcs.carleton.edu:5131/newgames/">New Games</a>
                     </li>
                     <li>
                         <a href="http://perlman.mathcs.carleton.edu:5131/a_z/">List A-Z</a>
@@ -80,47 +66,58 @@ Although you can use them, for a more unique website, replace these images with 
         </div><!-- /.container -->
     </nav>
 
+    <!-- Navigation -->
+        <!-- /.container -->
+
     <!-- Header -->
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <p></p>
+                <div class="container">
+            <!-- Logo and responsive toggle -->
+                    <br><br><br>
+                         <form action="http://perlman.mathcs.carleton.edu:5131/search/" method="POST" style="color:#000000">
+                              <select id="minPlayers" name="minPlayers" type="number">
+                                  <option value=-1>Min Players</option>
+                                  <option value=2>2</option>
+                                  <option value=3>3</option>
+                                  <option value=4>4</option>
+                                  <option value=5>5</option>
+                                  <option value=6>>5</option>
+                               </select>
+                        <input type="text" id="genre" name="genre" placeholder="Search a genre...">
+                        <input type="text" id="search" name="search" placeholder="Search by name...">
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</button>
+                    </form>
+                </div>
             </div>
         </div>
     </header>
-
-    <div class="container">
-
         <!-- Heading -->
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Results:
-                    <small>There is a total of</small>
+                    <small>There is a total of {{total}}</small>
                 </h1>
                 
             </div>
         </div>
         <div class="row">
                 {% for indivlist in list %}
-                    <tr>
-                        <td><img class="img-responsive img-rounded" src={{indivlist.thumbURL}} alt="Not Found"> </td>
-                        <td width="100%"> <h3> <a href="#">{{indivlist.name}}</a>: </h3> </br> {{indivlist.desc}} </td>
-                    </tr>
+                    <article class="col-md-4 article-intro">
+                        <img class="img-responsive img-rounded" src={{indivlist.thumbURL}} alt="Not Found"> 
+                        <h3> <a href="/{{indivlist.ID}}/">{{indivlist.name}}:</a> </h3>
+                    </article>
                 {% endfor %}
-        </div>
-
-    </div>
+        </div>   
     
-    <footer>
-        
+    <footer>      
         <div class="small-print">
             <div class="container">
                 <hr>
-                <p>This data set is included within the R package bggAnalysis. Permissions to use is granted, free of charge, to any person obtaining a copy of this software and associated documentation file. </p>
+                <p>This data set is included within the R package bggAnalysis. Permissions to use is granted, free of charge, to any person obtaining a copy of this software and associated documentation file. All images present on this page are from cf.geekdo-images.com.</p>
             </div>
         </div>
-    </footer>
-    
+    </footer>  
 </body>
-
 </html>

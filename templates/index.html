@@ -30,9 +30,7 @@ Although you can use them, for a more unique website, replace these images with 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     
 </head>
-
 <body>
-
     <!-- Navigation -->
     <nav id="siteNav" class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -44,7 +42,7 @@ Although you can use them, for a more unique website, replace these images with 
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="http://perlman.mathcs.carleton.edu:5131/">
                 	<span class="glyphicon glyphicon-king"></span> 
                 	BOARD GAMES
                 </a>
@@ -56,7 +54,7 @@ Although you can use them, for a more unique website, replace these images with 
                         <a href="http://perlman.mathcs.carleton.edu:5131/">Home</a>
                     </li>
                     <li>
-                        <a href="http://perlman.mathcs.carleton.edu:5131/newgames/">List A-Z</a>
+                        <a href="http://perlman.mathcs.carleton.edu:5131/newgames/">New Games</a>
                     </li>
                     <li>
                         <a href="http://perlman.mathcs.carleton.edu:5131/a_z/">List A-Z</a>
@@ -73,25 +71,23 @@ Although you can use them, for a more unique website, replace these images with 
             <div class="header-content-inner">
                 <h1>Search For Awesome Board Games Here!</h1>
                 <p></p>
-                <form action="http://perlman.mathcs.carleton.edu:5131/<genre>+<minPlayers>+<search>" method="POST">
-                	<select id="minPlayers" name="minPlayers">
-                		<option value="">Min Players</option>
+                <form action="http://perlman.mathcs.carleton.edu:5131/search/" method="POST" style="color:#000000">
+                	<select id="minPlayers" name="minPlayers" type="number">
+                		<option value="-1">Min Players</option>
                 		<option value="2">2</option>
                 		<option value="3">3</option>
                 		<option value="4">4</option>
                 		<option value="5">5</option>
                 		<option value="6">>5</option>
                 	</select>
-                	<input type="text" id="genre" name="genreInput" placeholder="Search a genre...">
-                	<input type="text" id="search" name="searchInput" placeholder="Search by name...">
-                	<input type="submit" value="Search">
+                	<input type="text" id="genre" name="genre" placeholder="Search a genre...">
+                	<input type="text" id="search" name="search" placeholder="Search by name...">
+                	<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</button>
                 </form>
             </div>
         </div>
     </header>
-
 	<!-- <div class="container"> -->
-
         <!-- Heading -->
         <div class="row">
             <div class="col-lg-12">
@@ -99,8 +95,6 @@ Although you can use them, for a more unique website, replace these images with 
                 </h1>
             </div>
         </div>
-        <!-- /.row -->
-
         <!-- Feature Row -->
         <div class="row">
             {% for indivlist in list %}
@@ -116,11 +110,10 @@ Although you can use them, for a more unique website, replace these images with 
         <div class="small-print">
             <div class="container">
             	<hr>
-                <p>This data set is included within the R package bggAnalysis. Permissions to use is granted, free of charge, to any person obtaining a copy of this software and associated documentation file. </p>
+                <p>This data set is included within the R package bggAnalysis. Permissions to use is granted, free of charge, to any person obtaining a copy of this software and associated documentation file. All images present on this page are from cf.geekdo-images.com. </p>
             </div>
         </div>
     </footer>
     
 </body>
-
 </html>
