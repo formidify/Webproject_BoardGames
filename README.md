@@ -2,6 +2,8 @@
 # James Yang, Vermilion Villarreal
 # Last Updated October 25th, 2017
 
+*All the files are up-to-date and ready to be turned in. Failed to push tags because local repository is forked. 
+
 Description of the project: 
 Our project consists of a web driven database for board games searches. Users can search and find boardgames and their attributes, including description and thumbnail, etc. 
 
