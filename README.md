@@ -1,4 +1,10 @@
 # web-project
+# James Yang and Vermilion Villarreal
+# Last Updated October 25th, 2017
+
+Description of the project: 
+Our project consists of a web driven database for board games searches. Users can search and find boardgames and their attributes, including description and thumbnail, etc. 
+
 This repo contains starter code for the database-driven web project. It consists of the following files:
 
 createtable.sql: A Python script used to create a database and set up the table(s), including table columns and types.
