@@ -2,8 +2,6 @@
 # James Yang, Vermilion Villarreal
 # Last Updated October 25th, 2017
 
-*All the files are up-to-date and ready to be turned in. Failed to push tags because local repository is forked. 
-
 Description of the project: 
 Our project consists of a web driven database for board games searches. Users can search and find boardgames and their attributes, including description and thumbnail, etc. 
 
@@ -18,7 +16,7 @@ Citations:
 1. Our dataset is from https://github.com/9thcirclegames/bgg-analysis and then downloaded from the R package "bgg-analysis". 
 2. The background picture on all the webpages is downloaded from http://www.analoggames.com/wp-content/uploads/2016/04/pyramid_arcade_andy_looney_labs_fluxx_board_card_game_analoggames_analog_games_02.jpg. 
 3. The thumbnails/pictures of all the board games from geekdo-images, whose URLs are part of the dataset. 
-4. The structure of our HTML templates is borrowed from https://www.quackit.com/html/templates/. 
+4. The CSS templates as well as the structure of our HTML templates are borrowed from https://www.quackit.com/html/templates/. 
 
 What we wish we had implemented:
 We wanted to implement pagination for all the search pages so we can display only 10 results per page instead of display everything. However, the interface we need to use is too complicated and time-consuming for this particular project, so we decided not to in the end. 
